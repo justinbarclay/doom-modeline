@@ -2057,32 +2057,32 @@ mouse-1: Toggle Debug on Quit"
             (when (executable-find "ruby")
               (setq doom-modeline-env-command
                     '("ruby" . "--version"))
-              (setq  doom-modeline-env-parser 'ruby-version-parser))))
+              (setq  doom-modeline-env-parser 'doom-version-parser--ruby))))
 (add-hook 'perl-mode-hook
           (lambda ()
             (when (executable-find "perl")
               (setq doom-modeline-env-command
                     '("perl" . "--version"))
-              (setq  doom-modeline-env-parser 'perl-version-parser))))
+              (setq  doom-modeline-env-parser 'doom-version-parser--perl))))
 (add-hook 'go-mode-hook
           (lambda ()
             (when (executable-find "go")
               (setq doom-modeline-env-command
                     '("go" . "version"))
-              (setq doom-modeline-env-parser 'go-version-parser))))
+              (setq doom-modeline-env-parser 'doom-version-parser--go))))
 
 (add-hook 'elixir-mode-hook
           (lambda ()
             (when (executable-find "iex")
               (setq doom-modeline-env-command
                     '("iex" . "--version"))
-              (setq  doom-modeline-env-parser 'elixir-version-parser))))
+              (setq  doom-modeline-env-parser 'doom-version-parser--elixir))))
 (add-hook 'rust-mode-hook
           (lambda ()
             (when (executable-find "rustc")
               (setq doom-modeline-env-command
                     '("rustc" . "--version"))
-              (setq  doom-modeline-env-parser 'rustc-version-parser))))
+              (setq  doom-modeline-env-parser 'doom-version-parser--rustc))))
 
 
 ;; Ensure modeline is inactive when Emacs is unfocused (and active otherwise)

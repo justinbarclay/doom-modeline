@@ -2,24 +2,24 @@
 ;; -*- lexical-binding: t -*-
 (require 'subr-x)
 
-(defun ruby-version-parser (line)
+(defun doom-version-parser--ruby (line)
   (car (split-string
         (cadr
          (split-string line))
         "p")))
 
-(defun elixir-version-parser (line)
+(defun doom-version-parser--elixir (line)
   (cadr
    (split-string line)))
 
-(defun rustc-version-parser (line)
+(defun doom-version-parser--rustc (line)
   (car
    (split-string
     (cadr
      (split-string line))
     "-")))
 
-(defun go-version-parser (line)
+(defun doom-version-parser--go (line)
   (cadr
    (split-string
     (caddr
@@ -27,7 +27,7 @@
       line))
     "go")))
 
-(defun perl-version-parser (line)
+(defun doom-version-parser--perl (line)
   (string-trim
    (car
     (split-string
@@ -36,7 +36,7 @@
      ")"))
    "v"))
 
-(defun python-version-parser (line)
+(defun doom-version-parser--python (line)
   (cadr
    (split-string line)))
 
@@ -57,9 +57,9 @@
     nil))
 
 ;; (get-prog-version "ruby" "--version" '(lambda (line)
-;;                                         (message (ruby-version-parser line))))
+;;                                         (message (doom-version-parser--ruby line))))
 
-;; (get-prog-version "iex" "--version" 'elixir-version-parser)
+;; (get-prog-version "iex" "--version" 'doom-version-parser--elixir)
 
 ;; (get-prog-version "rustc" "--version" 'rustc-version-parser)
 
