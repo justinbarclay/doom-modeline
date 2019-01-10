@@ -39,7 +39,7 @@
   (cadr
    (split-string line)))
 
-(defun get-prog-version (prog callback &rest args)
+(defun get-prog-version (prog callback args)
   (let ((proc (apply 'start-process
 		     (append ;; Flaten process-args into a single list so we can handle variadic length args
                       (list "doom-modeline-prog" "doom-modeline-prog" prog)
@@ -54,7 +54,4 @@
 			       (funcall parser line)))
     nil))
 
-;; (get-prog-version "ruby"
-;;                   (lambda (line) (message line))
-;;                   "--version")
 (provide 'doom-version-parser)
