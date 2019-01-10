@@ -543,9 +543,9 @@ If DEFAULT is non-nil, set the default mode-line for all buffers."
 ;; An ordered list of a command and arguments for that command used to emit a programming languages version
 ;; Ex: '("ruby" "--version")
 ;; Ex: '("pipenv" "run" "python "--version")
-(defvar-local doom-modeline-env-command nil)
-(defvar-local doom-modeline-env-command-args nil)
-(defvar-local doom-modeline-env-parser nil)
+(defvar-local doom-modeline-env-command nil "A program that we're looking to extract version information from.")
+(defvar-local doom-modeline-env-command-args nil "A list of arguments to pass to `doom-modeline-env-command` to extract the version from.")
+(defvar-local doom-modeline-env-parser nil "A function that returns version number from a programs --version (or similar) command")
 
 (defun doom-modeline-update-env ()
   "Update environment info on mode-line."
