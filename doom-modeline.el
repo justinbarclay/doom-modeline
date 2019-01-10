@@ -552,11 +552,10 @@ If DEFAULT is non-nil, set the default mode-line for all buffers."
              doom-modeline-env-command
              doom-modeline-env-parser)
     (let ((default-directory (doom-modeline-project-root)))
-      (get-prog-version (car doom-modeline-env-command)
-                        (lambda (prog-version)
-                          (message prog-version)
-                          (setq doom-modeline-env-version (funcall doom-modeline-env-parser prog-version)))
-                        (cdr doom-modeline-env-command)))))
+      (doom-version-parser--get (car doom-modeline-env-command)
+                                (lambda (prog-version)
+                                  (setq doom-modeline-env-version (funcall doom-modeline-env-parser prog-version)))
+                                (cdr doom-modeline-env-command)))))
 
 (with-no-warnings
   (if (boundp 'after-focus-change-function)
