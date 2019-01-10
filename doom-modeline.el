@@ -551,6 +551,8 @@ If DEFAULT is non-nil, set the default mode-line for all buffers."
   "Update environment info on mode-line."
   (when (and doom-modeline-version
              doom-modeline-env-command
+             (executable-find doom-modeline-env-command)
+             doom-modeline-env-command-args
              doom-modeline-env-parser)
     (let ((default-directory (doom-modeline-project-root)))
       (doom-version-parser--get doom-modeline-env-command
@@ -2060,35 +2062,30 @@ mouse-1: Toggle Debug on Quit"
                    (setq doom-modeline-env-command-args '("--version"))))))
 (add-hook 'ruby-mode-hook
           (lambda ()
-            (when (executable-find "ruby")
-              (setq doom-modeline-env-command "ruby")
-              (setq doom-modeline-env-command-args '("--version"))
-              (setq doom-modeline-env-parser 'doom-version-parser--ruby))))
+            (setq doom-modeline-env-command "ruby")
+            (setq doom-modeline-env-command-args '("--version"))
+            (setq doom-modeline-env-parser 'doom-version-parser--ruby)))
 (add-hook 'perl-mode-hook
           (lambda ()
-            (when (executable-find "perl")
-              (setq doom-modeline-env-command "perl")
-              (setq doom-modeline-env-command-args '("--version"))
-              (setq doom-modeline-env-parser 'doom-version-parser--perl))))
+            (setq doom-modeline-env-command "perl")
+            (setq doom-modeline-env-command-args '("--version"))
+            (setq doom-modeline-env-parser 'doom-version-parser--perl)))
 (add-hook 'go-mode-hook
           (lambda ()
-            (when (executable-find "go")
-              (setq doom-modeline-env-command "go")
-              (setq doom-modeline-env-command-args '("version"))
-              (setq doom-modeline-env-parser 'doom-version-parser--go))))
+            (setq doom-modeline-env-command "go")
+            (setq doom-modeline-env-command-args '("version"))
+            (setq doom-modeline-env-parser 'doom-version-parser--go)))
 
 (add-hook 'elixir-mode-hook
           (lambda ()
-            (when (executable-find "iex")
-              (setq doom-modeline-env-command "iex")
-              (setq doom-modeline-env-command-args '("--version"))
-              (setq doom-modeline-env-parser 'doom-version-parser--elixir))))
+            (setq doom-modeline-env-command "iex")
+            (setq doom-modeline-env-command-args '("--version"))
+            (setq doom-modeline-env-parser 'doom-version-parser--elixir)))
 (add-hook 'rust-mode-hook
           (lambda ()
-            (when (executable-find "rustc")
-              (setq doom-modeline-env-command "rustc")
-              (setq doom-modeline-env-command-args '("--version"))
-              (setq doom-modeline-env-parser 'doom-version-parser--rustc))))
+            (setq doom-modeline-env-command "rustc")
+            (setq doom-modeline-env-command-args '("--version"))
+            (setq doom-modeline-env-parser 'doom-version-parser--rustc)))
 
 
 ;; Ensure modeline is inactive when Emacs is unfocused (and active otherwise)
