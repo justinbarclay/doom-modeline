@@ -544,6 +544,7 @@ If DEFAULT is non-nil, set the default mode-line for all buffers."
 ;; Ex: '("ruby" "--version")
 ;; Ex: '("pipenv" "run" "python "--version")
 (defvar-local doom-modeline-env-command nil)
+(defvar-local doom-modeline-env-command-args nil)
 (defvar-local doom-modeline-env-parser nil)
 
 (defun doom-modeline-update-env ()
@@ -552,10 +553,10 @@ If DEFAULT is non-nil, set the default mode-line for all buffers."
              doom-modeline-env-command
              doom-modeline-env-parser)
     (let ((default-directory (doom-modeline-project-root)))
-      (doom-version-parser--get (car doom-modeline-env-command)
+      (doom-version-parser--get doom-modeline-env-command
+                                doom-modeline-env-command-args
                                 (lambda (prog-version)
-                                  (setq doom-modeline-env-version (funcall doom-modeline-env-parser prog-version)))
-                                (cdr doom-modeline-env-command)))))
+                                  (setq doom-modeline-env-version (funcall doom-modeline-env-parser prog-version)))))))
 
 (with-no-warnings
   (if (boundp 'after-focus-change-function)
@@ -2049,45 +2050,45 @@ mouse-1: Toggle Debug on Quit"
 (add-hook 'python-mode-hook
           (lambda ()
             (cond ((and (fboundp 'pipenv-project-p) (pipenv-project-p) (executable-find "pipenv"))
-                   (setq  doom-modeline-env-parser 'doom-version-parser--python)
-                   (setq doom-modeline-env-command
-                         '("pipenv" "run" "python" "--version")))
+                   (setq doom-modeline-env-parser 'doom-version-parser--python)
+                   (setq doom-modeline-env-command "pipenv")
+                   (setq doom-modeline-env-command-args '("run" "python" "--version")))
                   ((and doom-modeline-python-executable
                         (executable-find doom-modeline-python-executable))
                    (setq doom-modeline-env-parser 'doom-version-parser--python)
-                   (setq doom-modeline-env-command
-                         (list doom-modeline-python-executable "--version"))))))
+                   (setq doom-modeline-env-command doom-modeline-python-executable)
+                   (setq doom-modeline-env-command-args '("--version"))))))
 (add-hook 'ruby-mode-hook
           (lambda ()
             (when (executable-find "ruby")
-              (setq doom-modeline-env-command
-                    '("ruby" "--version"))
-              (setq  doom-modeline-env-parser 'doom-version-parser--ruby))))
+              (setq doom-modeline-env-command "ruby")
+              (setq doom-modeline-env-command-args '("--version"))
+              (setq doom-modeline-env-parser 'doom-version-parser--ruby))))
 (add-hook 'perl-mode-hook
           (lambda ()
             (when (executable-find "perl")
-              (setq doom-modeline-env-command
-                    '("perl" "--version"))
-              (setq  doom-modeline-env-parser 'doom-version-parser--perl))))
+              (setq doom-modeline-env-command "perl")
+              (setq doom-modeline-env-command-args '("--version"))
+              (setq doom-modeline-env-parser 'doom-version-parser--perl))))
 (add-hook 'go-mode-hook
           (lambda ()
             (when (executable-find "go")
-              (setq doom-modeline-env-command
-                    '("go" "version"))
+              (setq doom-modeline-env-command "go")
+              (setq doom-modeline-env-command-args '("version"))
               (setq doom-modeline-env-parser 'doom-version-parser--go))))
 
 (add-hook 'elixir-mode-hook
           (lambda ()
             (when (executable-find "iex")
-              (setq doom-modeline-env-command
-                    '("iex" "--version"))
-              (setq  doom-modeline-env-parser 'doom-version-parser--elixir))))
+              (setq doom-modeline-env-command "iex")
+              (setq doom-modeline-env-command-args '("--version"))
+              (setq doom-modeline-env-parser 'doom-version-parser--elixir))))
 (add-hook 'rust-mode-hook
           (lambda ()
             (when (executable-find "rustc")
-              (setq doom-modeline-env-command
-                    '("rustc" "--version"))
-              (setq  doom-modeline-env-parser 'doom-version-parser--rustc))))
+              (setq doom-modeline-env-command "rustc")
+              (setq doom-modeline-env-command-args '("--version"))
+              (setq doom-modeline-env-parser 'doom-version-parser--rustc))))
 
 
 ;; Ensure modeline is inactive when Emacs is unfocused (and active otherwise)
