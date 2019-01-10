@@ -1,5 +1,4 @@
-;;; version-parser.el --- A version parser for doom-modeline
-;; -*- lexical-binding: t -*-
+;;; version-parser.el --- A version parser for doom-modeline -*- lexical-binding: t -*-
 (require 'subr-x)
 
 (defun doom-version-parser--ruby (line)
