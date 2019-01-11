@@ -60,7 +60,7 @@
 
 (defun doom-version-parser--get (prog args callback)
   "Starts a sub process using prog and applies the args to the sub process.
-   Once it recieves information from STDOUT, it closes off the subprcess and
+   Once it recieves information from STDOUT, it closes off the subprocess and
    passes on the information into the callback."
   (let ((proc (apply 'start-process
 		     (append ;; Flaten process-args into a single list so we can handle variadic length args
