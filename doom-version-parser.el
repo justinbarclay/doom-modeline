@@ -61,7 +61,8 @@
 (defun doom-version-parser--get (prog args callback)
   "Starts a sub process using prog and applies the args to the sub process.
    Once it recieves information from STDOUT, it closes off the subprocess and
-   passes on the information into the callback."
+   passes on the information into the callback.
+   Ex: (doom-version-parser--get \"ruby\" '(\"version\") (lambda (line) (message (doom-modeline-parser--ruby)))"
   (let ((proc (apply 'start-process
 		     (append ;; Flaten process-args into a single list so we can handle variadic length args
                       (list "doom-modeline-prog" "doom-modeline-prog" prog)
