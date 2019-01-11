@@ -548,9 +548,7 @@ If DEFAULT is non-nil, set the default mode-line for all buffers."
   (if (boundp 'after-focus-change-function)
       (add-function :after after-focus-change-function #'doom-modeline-update-env)
     (add-hook 'focus-in-hook #'doom-modeline-update-env)))
-
 (add-hook 'find-file-hook #'doom-modeline-update-env)
-
 (defun doom-modeline-update-env ()
   "Update environment info on mode-line."
   (when (and doom-modeline-version
