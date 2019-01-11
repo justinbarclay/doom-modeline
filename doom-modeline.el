@@ -563,6 +563,7 @@ If DEFAULT is non-nil, set the default mode-line for all buffers."
                                 doom-modeline-env-command-args
                                 (lambda (prog-version)
                                   (setq doom-modeline-env-version (funcall doom-modeline-env-parser prog-version)))))))
+
 ;;
 ;; Modeline helpers
 ;;
